@@ -73,6 +73,8 @@ package com.example.amqp.producer.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -92,6 +94,11 @@ public class RabbitConfiguration {
         Jackson2JsonMessageConverter jackson2JsonMessageConverter
                 = new Jackson2JsonMessageConverter(objectMapper);
         return jackson2JsonMessageConverter;
+    }
+    
+    @Bean
+    public Queue myQueue() {
+    	return new Queue("myQueue");
     }
 
 }
